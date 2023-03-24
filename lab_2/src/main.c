@@ -18,9 +18,6 @@ int main() {
   }
   printf("\n");
 
-  int_vector_pop_back(v);
-  int_vector_pop_back(v);
-
   int_vector_set_item(v, 0, 4);
 
   int_vector_resize(v, 5);
