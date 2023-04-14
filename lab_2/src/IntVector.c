@@ -1,5 +1,6 @@
 #include "IntVector.h"
 #include <stddef.h>
+#include <stdio.h>
 #include <stdlib.h>
 #define INITIAL_CAPACITY 10
 
@@ -39,23 +40,31 @@ size_t int_vector_get_size(const IntVector *v) { return v->size; }
 
 size_t int_vector_get_capacity(const IntVector *v) { return v->capacity; }
 
-void int_vector_reserve(IntVector *v, size_t capacity) {
+int int_vector_reserve(IntVector *v, size_t capacity) {
   if (v->capacity < capacity) {
     int *new_data = (int *)realloc(v->data, capacity * sizeof(int));
     if (new_data == NULL) {
-      return;
+      return -1;
     }
     v->data = new_data;
     v->capacity = capacity;
+    return 0;
   }
+  return 0;
 }
 
-void int_vector_push_back(IntVector *v, int item) {
+int int_vector_push_back(IntVector *v, int item) {
+  if (!v) {
+    return -1;
+  }
+
   if (v->size >= v->capacity) {
     size_t new_capacity = v->capacity == 0 ? INITIAL_CAPACITY : v->capacity * 2;
     int_vector_reserve(v, new_capacity);
+    printf("New capacity: %ld\n", new_capacity);
   }
   v->data[v->size++] = item;
+  return 0;
 }
 
 void int_vector_pop_back(IntVector *v) {

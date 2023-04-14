@@ -25,7 +25,7 @@ size_t int_vector_get_size(const IntVector *v);
 
 size_t int_vector_get_capacity(const IntVector *v);
 
-void int_vector_push_back(IntVector *v, int item);
+int int_vector_push_back(IntVector *v, int item);
 //Добавляет элемент в конец массива. При необходимости увеличивает емкость
 //массива. Для простоты в качестве коэффициента роста можно использовать 2.
 
@@ -45,6 +45,6 @@ void int_vector_resize(IntVector *v, size_t new_size);
 //происходит. Для уменьшения емкости массива в этом случае следует использовать
 //функцию int_vector_shrink_to_fit.
 
-void int_vector_reserve(IntVector *v, size_t capacity);
+int int_vector_reserve(IntVector *v, size_t capacity);
 //Изменить емкость массива.
 //Нет эффекта, если новая емкость меньше либо равна исходной.
